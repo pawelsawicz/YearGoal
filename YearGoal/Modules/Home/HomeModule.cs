@@ -10,11 +10,16 @@ namespace YearGoal.Modules.Home
     public class HomeModule : NancyModule 
     {
         private readonly IGoalRepository _goalRepository;
-
+                
         public HomeModule(IGoalRepository goalRepository)
         {
-           
+            _goalRepository = goalRepository;
 
+            Get["/"] = _ =>
+            {
+                return View["Index"];
+            };
+            
         }
     }
 }
