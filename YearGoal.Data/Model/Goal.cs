@@ -8,7 +8,6 @@ namespace YearGoal.Data.Model
 {
     public class Goal
     {
-        public string Name { get; set; }
-        public DateTime CreateTime { get; set; }
+        public string Name { get; set; }       
     }
 }

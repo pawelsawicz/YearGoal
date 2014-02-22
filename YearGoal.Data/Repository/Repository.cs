@@ -12,21 +12,22 @@ namespace YearGoal.Data.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly IDocumentStore _documentStore;
+  
 
         public Repository()
         {
             _documentStore = new DocumentStore() { Url = "http://localhost:9090/", DefaultDatabase = "Metis" };
-            _documentStore.Initialize();
+            _documentStore.Initialize();            
         }
 
-        public void Add(T entity)
+        public async void Add(T entity)
         {
             try
             {
-                using (var documentSession = _documentStore.OpenSession())
+                using (var documentSession = _documentStore.OpenAsyncSession())
                 {
-                    documentSession.Store(entity);
-                    documentSession.SaveChanges();
+                    await documentSession.StoreAsync(entity);                    
+                    await documentSession.SaveChangesAsync();
                 }
             }
             catch (Exception ex)

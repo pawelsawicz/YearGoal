@@ -9,6 +9,6 @@ namespace YearGoal.Data.Repository.Interface
 {
     public interface IGoalRepository : IRepository<Goal>
     {
-        bool CheckIfExist(string Id);
+        
     }
 }
