@@ -68,6 +68,10 @@
       <Project>{91514191-b361-45fc-b046-fdbc4c0f68d3}</Project>
       <Name>YearGoal.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YearGoal.Service\YearGoal.Service.csproj">
+      <Project>{ba339c78-d418-4e94-8849-05dec84179a0}</Project>
+      <Name>YearGoal.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
