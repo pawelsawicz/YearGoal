@@ -20,14 +20,14 @@ namespace YearGoal.Data.Repository
             _documentStore.Initialize();            
         }
 
-        public async void Add(T entity)
+        public void Add(T entity)
         {
             try
             {
-                using (var documentSession = _documentStore.OpenAsyncSession())
+                using (var documentSession = _documentStore.OpenSession())
                 {
-                    await documentSession.StoreAsync(entity);                    
-                    await documentSession.SaveChangesAsync();
+                    documentSession.Store(entity);                    
+                    documentSession.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -52,6 +52,46 @@ namespace YearGoal.Data.Repository
             }
 
             return model;
+        }
+
+
+        public bool Update(T newDocument, string Id)
+        {
+            
+            try
+            {
+                using (var documentSession = _documentStore.OpenSession())
+                {
+                    var oldDocument = documentSession.Load<T>(Id);
+                    newDocument = oldDocument;
+                    documentSession.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new NotImplementedException();                
+            }
+
+            return true;
+        }
+
+        public void Remove(string Id)
+        {
+            try
+            {
+                using (var documentSession = _documentStore.OpenSession())
+                {
+                    var document = this.GetById(Id);
+                    documentSession.Delete<T>(document);
+                    documentSession.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new NotImplementedException();
+            }
         }
     }
 }

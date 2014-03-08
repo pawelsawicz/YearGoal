@@ -10,5 +10,8 @@ namespace YearGoal.Data.Repository.Interface
     {
         void Add(T entity);
         T GetById(string Id);
+        bool Update(T newDocument, string Id);
+        void Remove(string Id);
+        
     }
 }
